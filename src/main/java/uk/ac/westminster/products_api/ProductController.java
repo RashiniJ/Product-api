@@ -8,10 +8,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 
-    @GetMapping
+    @GetMapping("/products")
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
@@ -23,7 +24,7 @@ public class ProductController {
 
     @PostMapping("/products")
     public Product addProduct(@RequestBody Product product) {
-        return productService.addProduct(product);
+        return productService.addProducts(product);
     }
 
     @DeleteMapping("/products/{id}")
@@ -32,7 +33,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/search")
-    public List<Product> search(@RequestParam String name) {
+    public List<Product> findByName(@RequestParam String name) {
         return productService.findByName(name);
     }
 }
